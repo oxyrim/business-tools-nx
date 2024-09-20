@@ -18,8 +18,28 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
+                "sourceTag": "domain:finance",
+                "onlyDependOnLibsWithTags": ["domain:finance", "domain:shared"]
+              },
+              {
+                "sourceTag": "domain:marketing",
+                "onlyDependOnLibsWithTags": ["domain:marketing", "domain:shared"]
+              },
+              {
+                "sourceTag": "domain:crm",
+                "onlyDependOnLibsWithTags": ["domain:crm", "domain:shared"]
+              },
+              {
+                "sourceTag": "domain:inventory",
+                "onlyDependOnLibsWithTags": ["domain:inventory", "domain:shared"]
+              },
+              {
+                "sourceTag": "domain:shared",
+                "onlyDependOnLibsWithTags": ["domain:shared"]
+              },
+              {
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": ["type:ui", "type:util", "type:feature", "type:data-access"]
               }
             ]
           }
