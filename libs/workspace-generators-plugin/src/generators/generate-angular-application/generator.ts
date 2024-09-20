@@ -24,7 +24,7 @@ export async function generateAngularApplicationGenerator(
 
   tree.delete(`apps/${options.domain}/${options.name}/src/app/nx-welcome.component.ts`);
 
-  tree.write(appCompHtml, tree.read(appCompHtml).toString().replace('<business-tools-monorepo-nx-welcome></business-tools-monorepo-nx-welcome>', ''));
+  tree.write(appCompHtml, tree.read(appCompHtml).toString().replace('<app-nx-welcome></app-nx-welcome>', ''));
   tree.write(appCompTs, tree.read(appCompTs).toString().replace('NxWelcomeComponent, ', ''));
   tree.write(appCompTs, tree.read(appCompTs).toString().replace(`import { NxWelcomeComponent } from './nx-welcome.component';`, ''));
   tree.write(appCompSpec, tree.read(appCompSpec).toString().replace('NxWelcomeComponent, ', ''));
