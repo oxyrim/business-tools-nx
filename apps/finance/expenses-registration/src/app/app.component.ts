@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   standalone: true,
   imports: [RouterModule],
-  selector: 'app-nx-welcome',
+  selector: 'business-tools-monorepo-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
