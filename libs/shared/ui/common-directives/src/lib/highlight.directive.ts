@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener, inject, Input } from '@angular/core';
 
 @Directive({
-  selector: '[btLibsUiHighlight]',
+  selector: 'span:not([noHighlight]), [btLibsUiHighlight]:not(label)',
   standalone: true,
 })
 export class HighlightDirective {
