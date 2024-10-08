@@ -11,18 +11,14 @@ import { RouterLink } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-
-  private _navItems: NavbarItem[] = [];
-  @Input()
-  set navbarItems (value: NavbarItem[]) {
-    this._navItems = [{label: 'home', route: '/'}, ...value];
-  }
-  get navbarItems(): NavbarItem[] {
-    return this._navItems;
-  }
+  @Input({transform: addHome, required: true}) navbarItems: NavbarItem[] = [];
 }
 
 export interface NavbarItem {
   label: string;
   route: string;
+}
+
+function addHome(items: NavbarItem[]) {
+  return [{ label: 'home', route: '/' }, ...items];
 }
