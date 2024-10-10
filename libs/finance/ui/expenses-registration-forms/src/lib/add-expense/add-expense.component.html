@@ -1,0 +1,21 @@
+<form #addExpenseForm="ngForm">
+    <div class="form-field">
+        <label for="description">Description:</label>
+        <input [(ngModel)]="expenseToAdd.description" type="text" id="description" name="description">
+    </div>
+    <div class="form-field">
+        <label for="amountExclVat">amount Excl. VAT:</label>
+        <input [(ngModel)]="expenseToAdd.amountExclVat" type="number" id="amountExclVat" name="amountExclVat">
+    </div>
+    <div class="form-field">
+        <label for="vatPercentage">VAT Percentage:</label>
+        <input [(ngModel)]="expenseToAdd.vatPercentage" type="text" id="vatPercentage" name="vatPercentage">
+    </div>
+    <div class="form-field">
+        <label for="date">Date:</label>
+        <input [(ngModel)]="expenseToAdd.date" type="text" id="date" name="date">
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+{{expenseToAdd | json}}
