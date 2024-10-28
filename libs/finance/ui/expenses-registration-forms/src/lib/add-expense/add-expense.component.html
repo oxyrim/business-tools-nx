@@ -1,21 +1,38 @@
-<form #addExpenseForm="ngForm">
+<form #addExpenseForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-field">
         <label for="description">Description:</label>
-        <input [(ngModel)]="expenseToAdd.description" type="text" id="description" name="description">
+        <input required [(ngModel)]="expenseToAdd.description" #description="ngModel" 
+        [ngModelOptions]="{name: 'description', updateOn: 'blur', standalone: false}"
+        type="text" id="description" name="description">
+        <span 
+        *ngIf="addExpenseForm.touched && description.hasError('required')"
+        >This is required</span>
     </div>
-    <div class="form-field">
-        <label for="amountExclVat">amount Excl. VAT:</label>
-        <input [(ngModel)]="expenseToAdd.amountExclVat" type="number" id="amountExclVat" name="amountExclVat">
-    </div>
-    <div class="form-field">
-        <label for="vatPercentage">VAT Percentage:</label>
-        <input [(ngModel)]="expenseToAdd.vatPercentage" type="text" id="vatPercentage" name="vatPercentage">
-    </div>
+    <fieldset ngModelGroup="amount">
+        <div class="form-field">
+            <label for="amountExclVat">amount Excl. VAT:</label>
+            <input required #amountExclVat="ngModel" [(ngModel)]="expenseToAdd.amountExclVat" type="number" id="amountExclVat" name="amountExclVat">
+            <span
+            *ngIf="addExpenseForm.touched && amountExclVat.hasError('required')"
+            >This field is required</span>
+        </div>
+        <div class="form-field">
+            <label for="vatPercentage">VAT Percentage:</label>
+            <input required #vatPercentage="ngModel" [max]="100" [(ngModel)]="expenseToAdd.vatPercentage" type="number" id="vatPercentage" name="vatPercentage">
+            <span
+            *ngIf="addExpenseForm.touched && vatPercentage.hasError('required')"
+            >This field is required</span>
+            <span *ngIf="addExpenseForm.touched && vatPercentage.hasError('max')">The max percentage allowed is 100</span>
+        </div>
+    </fieldset>
     <div class="form-field">
         <label for="date">Date:</label>
-        <input [(ngModel)]="expenseToAdd.date" type="text" id="date" name="date">
+        <input required #date="ngModel" [(ngModel)]="expenseToAdd.date" type="text" id="date" name="date">
+        <span
+        *ngIf="addExpenseForm.touched && date.hasError('required')"
+        >This field is required</span>
     </div>
-    <button type="submit">Submit</button>
+    <button [disabled]="addExpenseForm.invalid" type="submit">Submit</button>
 </form>
 
 {{expenseToAdd | json}}

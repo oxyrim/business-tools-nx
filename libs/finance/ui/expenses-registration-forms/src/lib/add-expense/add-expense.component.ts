@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { AddExpense } from './add-expense.interface';
 
 @Component({
@@ -19,5 +19,14 @@ export class AddExpenseComponent {
     vatPercentage: null,
     date: null,
   }
+
+  @ViewChild('addExpenseForm') form!: NgForm;
+  @Output() addExpense = new EventEmitter<AddExpense>();
+
+  onSubmit(): void {
+    this.addExpense.emit(structuredClone(this.expenseToAdd));
+    this.form.reset();
+  }
+
   
 }
