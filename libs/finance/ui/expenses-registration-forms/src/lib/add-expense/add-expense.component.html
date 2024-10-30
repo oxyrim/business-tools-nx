@@ -1,12 +1,15 @@
 <form #addExpenseForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-field">
         <label for="description">Description:</label>
-        <input required [(ngModel)]="expenseToAdd.description" #description="ngModel" 
+        <input required [btLibsUtilMaxWordCount]="3" [(ngModel)]="expenseToAdd.description" #description="ngModel" 
         [ngModelOptions]="{name: 'description', updateOn: 'blur', standalone: false}"
         type="text" id="description" name="description">
         <span 
         *ngIf="addExpenseForm.touched && description.hasError('required')"
         >This is required</span>
+        <span *ngIf="addExpenseForm.touched && description.hasError('btLibsUtilMaxWordCount')">
+            You can only use 3 words, you used {{description.getError('btLibsUtilMaxWordCount').count}}
+        </span>
     </div>
     <fieldset ngModelGroup="amount">
         <div class="form-field">
