@@ -1,3 +1,6 @@
 <!-- <bt-libs-ui-add-expense-form/> -->
-<bt-libs-ui-dynamic-form [formModelConfig]="formModelConfig" (outputForm)="addExpense($event)" />
-
+ <bt-libs-ui-modal [(shown)]="addExpenseShown" [title]="'Add Expense'" (shownChange)="logMessage()">
+    <!-- <bt-libs-ui-dynamic-form [formModelConfig]="formModelConfig" (addExpense)="addExpense($event)" /> -->
+    <bt-libs-ui-add-expense-form (addExpense)="addExpense($event)"/>
+    <div header-content>Special header content</div>
+ </bt-libs-ui-modal>
